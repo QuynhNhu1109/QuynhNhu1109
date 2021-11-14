@@ -1,8 +1,10 @@
 <?php
-require "config.php";
-require "models/db.php";
+require "config/db.php";
 require "models/product.php";
+require "models/manufacture.php"
 $product = new product;
+$manu = new Manufacture;
+$getAlManu = $manu ->getAlManu();
 $getAllProducts = $product->getAllProducts();
 
 //var_dump($getAllProducts);
@@ -180,12 +182,13 @@ $getAllProducts = $product->getAllProducts();
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Hot Deals</a></li>
-						<li><a href="#">Categories</a></li>
-						<li><a href="#">Laptops</a></li>
-						<li><a href="#">Smartphones</a></li>
-						<li><a href="#">Cameras</a></li>
-						<li><a href="#">Accessories</a></li>
+						<?php
+						$getAlManu = $manu ->getAlManu();
+						foreach($getAlManu as $value);
+						?>
+						<li><a href="products.php?manu_id=<?php echo $value['manu_id']?>">
+						<li><a href="#"><?php echo $value['manu_name'] ?></a></li>
+						<?php endforeach;?>
 					</ul>
 					<!-- /NAV -->
 				</div>
